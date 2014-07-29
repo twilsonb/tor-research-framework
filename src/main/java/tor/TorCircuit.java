@@ -507,7 +507,7 @@ public class TorCircuit {
                 return false;
             }
 			
-			//int digest = buf.getInt();
+			int digest = buf.getInt();
 			int length = buf.getShort();
 			byte data[] = Arrays.copyOfRange(c.payload, 1 + 2 + 2 + 4 + 2, 1 + 2 + 2 + 4 + 2 + length);
 
