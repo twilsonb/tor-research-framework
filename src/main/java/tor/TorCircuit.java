@@ -272,6 +272,7 @@ public class TorCircuit {
 			throw new RuntimeException("Trying to use destroyed circuit");
 
         // Unused, throws ArrayIndexOutOfBoundsException when extend() is called after createCircuit()
+        // without the fix to getLastHop() when hops.size() == 0
 		//TorHop lastHop = getLastHop();
 		
 		byte create[] =  createPayload(nextHop);
