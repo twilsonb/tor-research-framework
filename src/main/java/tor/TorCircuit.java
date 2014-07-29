@@ -20,7 +20,6 @@ package tor;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.bouncycastle.util.encoders.Hex;
-
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
@@ -213,7 +212,7 @@ public class TorCircuit {
 			
 			byte digest[] = md.digest();
 			
-			byte [] fnl_final = new byte[509];
+			//byte [] fnl_final = new byte[509];
 			System.arraycopy(digest, 0, fnl, 5, 4);
 			
 			return fnl;
@@ -250,21 +249,30 @@ public class TorCircuit {
 		return data;
 	}
 
+    /**
+     * Return the last TorHop in this circuit, excluding the first hop.
+     *
+     * @return the last TorHop, or null if there are no TorHops in the circuit.
+     */
     public TorHop getLastHop() {
-        return hops.get(hops.size()-1);
+        if (hops.size() < 1)
+            return null;
+        else
+            return hops.get(hops.size()-1);
     }
 	
 	/**
 	 * Sends an extend cell to extend the circuit to specified hop
 	 * 
 	 * @param nextHop Hop to extend to
-	 * @throws  
+	 * @throws IOException
 	 */
 	public void extend(OnionRouter nextHop) throws IOException  {
         if(state == STATES.DESTROYED)
 			throw new RuntimeException("Trying to use destroyed circuit");
-		
-		TorHop lastHop = getLastHop();
+
+        // Unused, throws ArrayIndexOutOfBoundsException when extend() is called after createCircuit()
+		//TorHop lastHop = getLastHop();
 		
 		byte create[] =  createPayload(nextHop);
 		byte extend[] = new byte [4 + 2 + create.length + TorCrypto.HASH_LEN];
@@ -499,7 +507,7 @@ public class TorCircuit {
                 return false;
             }
 			
-			int digest = buf.getInt();
+			//int digest = buf.getInt();
 			int length = buf.getShort();
 			byte data[] = Arrays.copyOfRange(c.payload, 1 + 2 + 2 + 4 + 2, 1 + 2 + 2 + 4 + 2 + length);
 
