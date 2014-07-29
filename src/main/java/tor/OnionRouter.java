@@ -19,12 +19,12 @@
 package tor;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.IOUtils;
+//import org.apache.commons.io.IOUtils;
 import tor.util.TorDocumentParser;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.URL;
+//import java.net.URL;
 import java.net.UnknownHostException;
 import java.security.PublicKey;
 import java.util.HashSet;
@@ -71,7 +71,7 @@ public class OnionRouter {
             try {
                 // Do we need to download this separately, or does it come as part of the consensus?
                 TorDocumentParser rdr = new TorDocumentParser(Consensus.getConsensus().getRouterDescriptor(identityhash));
-                IPv4ExitPolicy = rdr.getArrayItem(rdr.IPv4PolicyKey);
+                IPv4ExitPolicy = rdr.getArrayItem(TorDocumentParser.IPv4PolicyKey);
             } catch(IOException e) {
                 System.out.println("acceptsIPv4ExitPort: failed to retrieve exit policy for: " + name + ", assuming reject");
                 return false;

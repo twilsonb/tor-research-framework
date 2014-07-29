@@ -55,8 +55,8 @@ public class TorDocumentParser {
     }
 
     public TorDocumentParser(String doc) throws IOException {
-        String curKey = null;
-        String curVal = null;
+        //String curKey = null;
+        //String curVal = null;
         String lns [] = (String[])IOUtils.readLines(new StringReader(doc)).toArray(new String[0]);
 
         for (int i = 0; i < lns.length; i++) {

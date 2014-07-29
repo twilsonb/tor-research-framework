@@ -30,16 +30,15 @@ import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TreeMap;
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 import java.util.zip.InflaterInputStream;
 
 public class Consensus {
 
-    // Unused?
-	public final static String DIRSERV = "86.59.21.38";
+	//public final static String DIRSERV = "86.59.21.38";
 
     // The maximum number of connection tries to directory caches before falling back to authorities
     public final static int MAX_TRIES = 10;
