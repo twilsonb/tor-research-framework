@@ -36,7 +36,7 @@ import java.security.Security;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.TreeMap;
-import java.util.concurrent.LinkedBlockingQueue;
+//import java.util.concurrent.LinkedBlockingQueue;
 
 public class TorSocket {
 
@@ -62,8 +62,6 @@ public class TorSocket {
 	 * @param circid Circuit ID
 	 * @param cmd Cell Command.  See Cell.*
 	 * @param payload Cell Payload
-	 * 
-	 * @return Success or failure
 	 */
 	public void sendCell(int circid, int cmd, byte[] payload)
 			throws IOException {
@@ -100,7 +98,7 @@ public class TorSocket {
 	}
 */
     private byte[] blockingRead(int length) throws IOException {
-       byte buf[] = new byte[length];
+       //byte buf[] = new byte[length];
        return IOUtils.readFully(in, length, true);
 
 //       int off = 0;
@@ -192,7 +190,6 @@ public class TorSocket {
 	 * @return TorCircuit object
 	 */
 	public TorCircuit createCircuit(boolean blocking) {
-		// TODO Auto-generated method stub
 		TorCircuit circ = new TorCircuit(this);
         circ.setBlocking(blocking);
 		circuits.put(new Integer(circ.circId), circ);
@@ -206,8 +203,7 @@ public class TorSocket {
 	/**
 	 * Main constructor. Connects and does connection setup.
 	 * 
-	 * @param host Hostname/IP string
-	 * @param port Port
+	 * @param fh OnionRouter for first hop
 	 */
 	public TorSocket(OnionRouter fh) throws IOException  {
 
